@@ -14,7 +14,8 @@ Log.Logger = new LoggerConfiguration()
     //.WriteTo.Console()
     //.WriteTo.File("logs/myBeautifulLog-.txt",rollingInterval:RollingInterval.Day)
     //.CreateLogger();
-
+//SeriLog Request Logging
+builder.Host.UseSerilog();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,7 +24,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
